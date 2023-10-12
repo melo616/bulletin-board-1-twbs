@@ -1,50 +1,59 @@
-<div>
-  <div>
-    <h1>
-      <%= @the_board.name %>
-    </h1>
-  </div>
-</div>
+<div class="container">
+  <div class="row mb-3">
+    <div class="col-md-12 d-flex align-items-center justify-content-between">
+      <h1>
+        <%= @the_board.name %>
+      </h1>
 
-<hr>
+      <button type="button" class="btn btn-outline-success" data-bs-toggle="modal" data-bs-target="#form_modal">
+        Add a new post
+      </button>
+    </div>
 
-<h2>
-  Add a new post
-</h2>
+    <div class="modal fade" id="form_modal" tabindex="-1">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <form action="/insert_post" method="post">
+              <div>
+                <label for="title_box">
+                  Title
+                </label>
 
-<form action="/insert_post" method="post">
-  <div>
-    <label for="title_box">
-      Title
-    </label>
+                <input type="text" id="title_box" name="query_title">
+              </div>
+            </div>
 
-    <input type="text" id="title_box" name="query_title">
-  </div>
+            <div>
+              <label for="body_box">
+                Body
+              </label>
 
-  <div>
-    <label for="body_box">
-      Body
-    </label>
+              <textarea id="body_box" name="query_body" rows="3"></textarea>
+            </div>
 
-    <textarea id="body_box" name="query_body" rows="3"></textarea>
-  </div>
+            <div>
+              <label for="expires_on_box">
+                Expires on
+              </label>
 
-  <div>
-    <label for="expires_on_box">
-      Expires on
-    </label>
+              <input type="date" id="expires_on_box" name="query_expires_on">
+            </div>
 
-    <input type="date" id="expires_on_box" name="query_expires_on">
-  </div>
+            <input type="hidden" id="board_id_box" name="query_board_id" value="<%= @the_board.id %>">
 
-  <input type="hidden" id="board_id_box" name="query_board_id" value="<%= @the_board.id %>">
-
-  <button>
-    Add post
-  </button>
-</form>
-
-<hr>
+            <button>
+              Add post
+            </button>
+          </form>
+          </div>
+        </div>
+      </div>
+    </div>
 
 <h2>Active posts</h2>
 
@@ -85,3 +94,4 @@
     </tr>
   <% end %>
 </table>
+</div>
